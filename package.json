@@ -1,14 +1,5 @@
 {
   "name": "photosweet",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -17,5 +8,7 @@
     }
   },
   "packageManager": "pnpm@12.11.2",
-  "type": "module"
+  "type": "module",
+  "private": true,
+  "license": "MIT"
 }
