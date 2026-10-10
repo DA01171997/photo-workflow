@@ -41,11 +41,22 @@ RUN curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/inst
 ARG NODE_VERSION=v24
 RUN source "$NVM_DIR/nvm.sh" \
     && nvm install "$NODE_VERSION" \
-    && nvm alias default "$NODE_VERSION" 
+    && nvm alias default "$NODE_VERSION" \
+    && nvm use default \
+    && node --version \
+    && npm --version
+
+ARG PNPM_VERSION=12.11.2
+RUN source "$NVM_DIR/nvm.sh" \
+    && nvm use default \
+    && npm install -g corepack \
+    && corepack prepare "pnpm@${PNPM_VERSION}" --activate \
+    && pnpm --version
 
 RUN source "$NVM_DIR/nvm.sh" \
     && nvm use default \
-    && npm install -g @moonrepo/cli
+    && npm install -g @moonrepo/cli \
+    && moon --version
 
 ENTRYPOINT ["bash", "-c", "source $NVM_DIR/nvm.sh && exec \"$@\"", "--"]
 CMD ["/bin/bash"]
