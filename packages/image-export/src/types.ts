@@ -7,6 +7,7 @@ export interface ExportOptions {
   compressionQuality?: number;
   backgroundColor?: string;
   upscaling?: boolean;
+  autoOrientation?: boolean; 
 }
 
 export interface ExportInput {

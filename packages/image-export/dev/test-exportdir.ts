@@ -2,6 +2,7 @@ import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { exportImage } from '../src/index.js';
 import { join, parse } from 'node:path';
 import { readdirSync } from 'node:fs';
+import sharp from 'sharp';
 
 interface Output {
   error?: string,
@@ -50,16 +51,44 @@ async function main(): Promise<void> {
       const data = await readFile(filePath);
       const { name } = parse(file);
       const outputFilePath = join(ouputDirPath, `${name}-modified.jpg`);
+      let width = 1080;
+      let height = 1080;
+      
+      // Portrait (classic)	4:5	1080 × 1350
+      // width = 1080,
+      // height = 1350,
 
+      // Portrait (taller)	3:4	1080 × 1440
+      // width = 1080,
+      // height = 1440,
+
+      // Landscape	1.91:1	1080 × 566
+      // width = 1080,
+      // height = 566,
+
+      // Square	1:1	1080 × 1080
+      // width = 1080,
+      // height = 1080,
+
+
+      // square
+      const metadata = await sharp(filePath).metadata();
+      const max = Math.max(metadata.width, metadata.height)
+      width = max;
+      height = max;
+      
+      width = 1080;
+      height = 566 ;
       const exportOutput = await exportImage({
         data,
         options: {
-          width: 1080,
-          height: 1350,
+          width: width,
+          height: height,
           fit: 'contain',
           backgroundColor: '#ffffff',
-          compressionQuality: 85,
-          upscaling: false,
+          compressionQuality: 95,
+          upscaling: true,
+          autoOrientation: true,
         },
       });
   

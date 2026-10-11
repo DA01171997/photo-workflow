@@ -2,8 +2,13 @@ import sharp from 'sharp';
 import type { ExportInput, ExportOutput } from './types.js';
 
 export async function exportImage(input: ExportInput): Promise<ExportOutput> {
-  const image = sharp(input.data);
-  
+  const image = sharp(
+    input.data,
+    {
+      autoOrient: input.options.autoOrientation,
+    },
+  );
+
   image.resize(
     input.options.width,
     input.options.height,
