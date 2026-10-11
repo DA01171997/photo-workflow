@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "dev:test": "tsx dev/test-export.ts"
+    "dev:test": "tsx dev/test-export.ts",
+    "dev:exportfile": "tsx dev/test-exportfile.ts",
+    "dev:exportdir": "tsx dev/test-exportdir.ts"
   },
   "exports": {
     ".": {
