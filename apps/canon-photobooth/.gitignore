@@ -1,0 +1,14 @@
+# CMake generated build files
+/build/
+
+# Canon proprietary SDK
+/third_party/canon-edsdk/
+
+# Compiled C++ artifacts
+*.obj
+*.o
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk

@@ -10,5 +10,8 @@
   "packageManager": "pnpm@12.11.2",
   "type": "module",
   "private": true,
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@moonrepo/cli": "2.6.1"
+  }
 }

@@ -1,0 +1,33 @@
+language: cpp
+
+tasks:
+  build:
+    script: |
+      cmake -S . -B build -G Ninja
+      if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      cmake --build build
+    inputs:
+      - "src/**/*"
+      - "CMakeLists.txt"
+    outputs:
+      - "build"
+    options:
+      cache: false
+
+  run:
+    script: |
+      & .\build\canon_photobooth.exe
+    deps:
+      - build
+    options:
+      cache: false
+  
+  clean:
+    command: cmake
+    args:
+      - -E
+      - rm
+      - -rf
+      - build
+    options:
+      cache: false
